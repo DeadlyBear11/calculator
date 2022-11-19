@@ -34,6 +34,9 @@ function operate(num1, num2, operator) {
     }
 };
 
+//Constant to show the current operation on the display.
+const currOp = document.querySelector("#current-operation");
+
 // Process to display pushed numbers.
 const numbers = [...document.querySelectorAll(".num")];
 
@@ -72,6 +75,7 @@ function checkIfOperate() {
         const num2 = +arrNum1Op[2];
         const currentResult = operate(num1, num2, operator);
         arrNum1Op = [currentResult, arrNum1Op[3]];
+        currOp.innerHTML = currentResult;
     } return;
 };
 
@@ -79,11 +83,17 @@ function checkIfOperate() {
 equalBtn.addEventListener("click", operateOnAll);
 
 function operateOnAll() {
+    // Check if there's anything to operate with.
+    if (arrNum1Op.length < 2) {
+        return;
+    }
+
     const num2 = +result.innerHTML;
     const num1 = +arrNum1Op[0];
     const operator = arrNum1Op[1];
     result.innerHTML = operate(num1, num2, operator);
     arrNum1Op = [];
+    currOp.innerHTML = "";
 };
 
 // Process for the clear-button to work.
@@ -92,4 +102,5 @@ const clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener("click", () => {
     result.innerHTML = "";
     arrNum1Op = [];
+    currOp.innerHTML = "";
 });

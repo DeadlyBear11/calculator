@@ -4,7 +4,7 @@
 }
 
 :root {
-    --color1: #E63946;
+    --color1: rgb(37, 37, 37);
     --color2: #F1FAEE;
     --color3: #A8DADC;
     --color4: #457B9D;
@@ -48,17 +48,28 @@ h1 {
 }
 
 #display {
+    display: flex;
     min-height: 3.1rem;
     background-color: var(--color2);
     border: 1px solid var(--color3);
 }
 
-#result {
+#current-operation, #result {
     padding: 0.4rem 0;
     font-family: 'Times New Roman', Times, serif;
     font-size: 2rem;
+}
+
+#current-operation {
+    padding-left: 0.3rem;
+    color: rgb(143, 143, 143);
+}
+
+#result {
     text-align: right;
     padding-right: 0.3rem;
+    flex-grow: 1;
+    color: var(--color1);
 }
 
 #buttons {
@@ -78,6 +89,14 @@ h1 {
     height: 4rem;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.5rem;
+    background-color: var(--color2);
+    color: var(--color1);
+    border: none;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    background-color: var(--color4);
 }
 
 footer {
