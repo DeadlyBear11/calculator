@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    border: 1px solid red;
 }
 
 :root {
@@ -16,7 +15,7 @@ html {
     background-color: var(--color5);
 }
 
-#section-title {
+#section-title, footer {
     width: 100%;
     height: 4rem;
     background-color: var(--color4);
@@ -34,7 +33,7 @@ h1 {
 
 #instructions {
     width: fit-content;
-    margin: 3rem auto;
+    margin: 1.5rem auto;
     font-family: Tahoma, sans-serif;
     font-size: 1.2rem;
     color: var(--color2);
@@ -44,6 +43,8 @@ h1 {
     width: fit-content;
     margin: 0 auto;
     background-color: var(--color3);
+    border: 1rem solid var(--color4);
+    border-radius: 10px;
 }
 
 #display {
@@ -51,10 +52,23 @@ h1 {
 }
 
 #result {
+    padding: 0.5rem 0;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 1.2rem;
+    font-size: 2rem;
     text-align: right;
-    padding-right: 0.2rem;
+    padding-right: 0.3rem;
+}
+
+#buttons {
+    width: 14rem;
+    height: 19rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 .btn {
@@ -64,22 +78,20 @@ h1 {
     font-size: 1.5rem;
 }
 
-#operator-btns {
-    display: flex;
+footer {
+    margin-top: 2.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    color:var(--color2);
 }
 
-#lower-btns {
-    display: flex;
+#author {
+    width: fit-content;
+    margin: 0 auto;
+    padding-top: 0.8rem;
+    text-align: center;
 }
 
-#number-btns {
-    display: flex;
-    flex-wrap: wrap;
-    width: 9rem;
-    flex-direction: row;
-}
-
-#equal-clear-zero-btns {
-    display: flex;
-    flex-direction: column;
+span {
+    font-weight: 800;
+    color: var(--color3);
 }
