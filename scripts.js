@@ -34,7 +34,7 @@ function operate(num1, num2, operator) {
     }
 };
 
-// Function to display pushed numbers.
+// Process to display pushed numbers.
 const numbers = [...document.querySelectorAll(".num")];
 
 numbers.forEach(number => number.addEventListener("click", showNum));
@@ -46,14 +46,14 @@ function showNum(e) {
     result.innerHTML = arrDisplay.join("");
 };
 
-// Function to operate on the numbers.
+// Process to operate on the numbers.
 const opBtns = [...document.querySelectorAll(".op")];
 const equalBtn = document.querySelector(".equal");
 
 // Save the first operand and operator in arrNum1Op.
 let arrNum1Op = [];
 
-opBtns.forEach(btn => btn.addEventListener("click", saveNum1Op));
+opBtns.forEach(op => op.addEventListener("click", saveNum1Op));
 
 function saveNum1Op(e) {
     const num1 = result.innerHTML;
@@ -73,3 +73,11 @@ function operateOnAll() {
     result.innerHTML = operate(num1, num2, operator);
     arrNum1Op = [];
 };
+
+// Process for the clear-button to work.
+const clearBtn = document.querySelector(".clear");
+
+clearBtn.addEventListener("click", () => {
+    result.innerHTML = "";
+    arrNum1Op = [];
+});
