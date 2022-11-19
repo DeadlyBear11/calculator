@@ -33,3 +33,15 @@ function operate(operator, num1, num2) {
             return "ERROR";
     }
 }
+
+// Function to display pushed numbers.
+const numbers = [...document.querySelectorAll(".num")];
+
+numbers.forEach(number => number.addEventListener("click", showNum));
+
+function showNum(e) {
+    const result = document.querySelector("#result");
+    const arr = result.innerHTML.split("");
+    arr.push(e.path[0].innerHTML);
+    result.innerHTML = arr.join("");
+}

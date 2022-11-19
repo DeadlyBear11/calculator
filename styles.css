@@ -48,11 +48,13 @@ h1 {
 }
 
 #display {
+    min-height: 3.1rem;
     background-color: var(--color2);
+    border: 1px solid var(--color3);
 }
 
 #result {
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     font-family: 'Times New Roman', Times, serif;
     font-size: 2rem;
     text-align: right;
