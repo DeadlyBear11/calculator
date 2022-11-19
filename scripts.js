@@ -54,6 +54,7 @@ const equalBtn = document.querySelector(".equal");
 let arrNum1Op = [];
 
 opBtns.forEach(op => op.addEventListener("click", saveNum1Op));
+opBtns.forEach(op => op.addEventListener("click", checkIfOperate));
 
 function saveNum1Op(e) {
     const num1 = result.innerHTML;
@@ -61,6 +62,17 @@ function saveNum1Op(e) {
     arrNum1Op.push(num1, operator);
     result.innerHTML = "";
     return arrNum1Op;
+};
+
+// Check if it has to chain operations.
+function checkIfOperate() {
+    if (arrNum1Op.length === 4) {
+        const num1 = +arrNum1Op[0];
+        const operator = arrNum1Op[1];
+        const num2 = +arrNum1Op[2];
+        const currentResult = operate(num1, num2, operator);
+        arrNum1Op = [currentResult, arrNum1Op[3]];
+    } return;
 };
 
 // Operate on first operand, operator and second operand.
