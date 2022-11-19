@@ -47,15 +47,13 @@ function showNum(e) {
 };
 
 // Function to operate on the numbers.
-const addBtn = document.querySelector(".add");
-const subBtn = document.querySelector(".sub");
-const divBtn = document.querySelector(".div");
-const mulBtn = document.querySelector(".mul");
+const opBtns = [...document.querySelectorAll(".op")];
 const equalBtn = document.querySelector(".equal");
 
 // Save the first operand and operator in arrNum1Op.
 let arrNum1Op = [];
-addBtn.addEventListener("click", saveNum1Op);
+
+opBtns.forEach(btn => btn.addEventListener("click", saveNum1Op));
 
 function saveNum1Op(e) {
     const num1 = result.innerHTML;
@@ -73,4 +71,5 @@ function operateOnAll() {
     const num1 = +arrNum1Op[0];
     const operator = arrNum1Op[1];
     result.innerHTML = operate(num1, num2, operator);
+    arrNum1Op = [];
 };
