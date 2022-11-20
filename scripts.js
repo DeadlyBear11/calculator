@@ -28,6 +28,9 @@ function operate(num1, num2, operator) {
         case "*":
             return multiply(num1, num2);
         case "/":
+            if (num2 === 0) {
+                return "ERROR";
+            }
             return divide(num1, num2);
         default:
             return "ERROR";
@@ -65,7 +68,7 @@ function saveNum1Op(e) {
     arrNum1Op.push(num1, operator);
     result.innerHTML = "";
     currOp.innerHTML = num1;
-    
+
     // Check if an operator button was pushed without a new number.
     if (arrNum1Op[2] === "") {
         arrNum1Op.splice(1, 2);
@@ -81,7 +84,15 @@ function checkIfOperate() {
         const num1 = +arrNum1Op[0];
         const operator = arrNum1Op[1];
         const num2 = +arrNum1Op[2];
-        const currentResult = Math.round(100 * operate(num1, num2, operator)) / 100;
+        const answer = operate(num1, num2, operator);
+        // Check for division by zero.
+        if (typeof answer === "string") {
+            currOp.innerHTML = answer;
+            result.innerHTML = "";
+            arrNum1Op = [];
+            return;
+        }
+        const currentResult = Math.round(100 * answer) / 100;
         arrNum1Op = [currentResult, arrNum1Op[3]];
         currOp.innerHTML = currentResult;
     } return;
@@ -121,7 +132,15 @@ function operateOnAll() {
     const num2 = +result.innerHTML;
     const num1 = +arrNum1Op[0];
     const operator = arrNum1Op[1];
-    result.innerHTML = Math.round(100 * operate(num1, num2, operator)) / 100;
+    const answer = operate(num1, num2, operator);
+    // Check for division by zero.
+    if (typeof answer === "string") {
+        currOp.innerHTML = answer;
+        result.innerHTML = "";
+        arrNum1Op = [];
+        return;
+    }
+    result.innerHTML = Math.round(100 * answer) / 100;
     arrNum1Op = [];
     currOp.innerHTML = "";
 };
