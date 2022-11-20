@@ -99,6 +99,11 @@ h1 {
     background-color: var(--color4);
 }
 
+.btn-pressed {
+    color: var(--color2);
+    background-color: var(--color5);
+}
+
 footer {
     margin-top: 2.5rem;
     font-family: 'Times New Roman', Times, serif;

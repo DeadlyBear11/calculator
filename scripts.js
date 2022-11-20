@@ -34,7 +34,7 @@ function operate(num1, num2, operator) {
     }
 };
 
-//Constant to show the current operation on the display.
+// Constant to show the current operation on the display.
 const currOp = document.querySelector("#current-operation");
 
 // Process to display pushed numbers.
@@ -64,6 +64,14 @@ function saveNum1Op(e) {
     const operator = e.path[0].innerHTML;
     arrNum1Op.push(num1, operator);
     result.innerHTML = "";
+    currOp.innerHTML = num1;
+    
+    // Check if an operator button was pushed without a new number.
+    if (arrNum1Op[2] === "") {
+        arrNum1Op.splice(1, 2);
+        currOp.innerHTML = arrNum1Op[0];
+    };
+
     return arrNum1Op;
 };
 
@@ -73,10 +81,32 @@ function checkIfOperate() {
         const num1 = +arrNum1Op[0];
         const operator = arrNum1Op[1];
         const num2 = +arrNum1Op[2];
-        const currentResult = operate(num1, num2, operator);
+        const currentResult = Math.round(100 * operate(num1, num2, operator)) / 100;
         arrNum1Op = [currentResult, arrNum1Op[3]];
         currOp.innerHTML = currentResult;
     } return;
+};
+
+// Keep operator button in a different color while it awaits for input.
+opBtns.forEach(op => op.addEventListener("click", keepColored));
+equalBtn.addEventListener("click", clearColored);
+
+function keepColored(e) {
+    opBtns.forEach(op => {
+        if (op.classList[2]) {
+            op.classList.toggle("btn-pressed");
+        };
+    });
+
+    e.path[0].classList.toggle("btn-pressed");
+};
+
+function clearColored() {
+    opBtns.forEach(op => {
+        if (op.classList[2]) {
+            op.classList.toggle("btn-pressed");
+        };
+    });
 };
 
 // Operate on first operand, operator and second operand.
@@ -91,7 +121,7 @@ function operateOnAll() {
     const num2 = +result.innerHTML;
     const num1 = +arrNum1Op[0];
     const operator = arrNum1Op[1];
-    result.innerHTML = operate(num1, num2, operator);
+    result.innerHTML = Math.round(100 * operate(num1, num2, operator)) / 100;
     arrNum1Op = [];
     currOp.innerHTML = "";
 };
@@ -104,3 +134,5 @@ clearBtn.addEventListener("click", () => {
     arrNum1Op = [];
     currOp.innerHTML = "";
 });
+
+clearBtn.addEventListener("click", clearColored);
