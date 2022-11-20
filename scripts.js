@@ -29,7 +29,7 @@ function operate(num1, num2, operator) {
             return multiply(num1, num2);
         case "/":
             if (num2 === 0) {
-                return "ERROR";
+                return "(T_T) why tho?";
             }
             return divide(num1, num2);
         default:
@@ -73,7 +73,9 @@ function saveNum1Op(e) {
     if (arrNum1Op[2] === "") {
         arrNum1Op.splice(1, 2);
         currOp.innerHTML = arrNum1Op[0];
-    };
+    } else if (arrNum1Op[0] === "") {
+        arrNum1Op.splice(0, 2);
+    }
 
     return arrNum1Op;
 };
@@ -100,7 +102,6 @@ function checkIfOperate() {
 
 // Keep operator button in a different color while it awaits for input.
 opBtns.forEach(op => op.addEventListener("click", keepColored));
-equalBtn.addEventListener("click", clearColored);
 
 function keepColored(e) {
     opBtns.forEach(op => {
@@ -125,7 +126,7 @@ equalBtn.addEventListener("click", operateOnAll);
 
 function operateOnAll() {
     // Check if there's anything to operate with.
-    if (arrNum1Op.length < 2) {
+    if (arrNum1Op.length < 2 || result.innerHTML === "" || arrNum1Op[0] === "") {
         return;
     }
 
@@ -143,6 +144,7 @@ function operateOnAll() {
     result.innerHTML = Math.round(100 * answer) / 100;
     arrNum1Op = [];
     currOp.innerHTML = "";
+    clearColored();
 };
 
 // Process for the clear-button to work.
